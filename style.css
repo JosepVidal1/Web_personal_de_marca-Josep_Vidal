@@ -1,0 +1,440 @@
+/* ========================================
+   ESTILOS GENERALES
+   ======================================== */
+
+/* Variables de color de la marca */
+:root {
+    --color-fondo: #f7f7f5;
+    --color-blanco: #ffffff;
+    --color-texto: #222222;
+    --color-texto-secundario: #666666;
+    --color-principal: #273746;
+    --color-principal-hover: #1b2833;
+    --color-borde: #dddddd;
+}
+
+/* Configuración general de la página */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   CABECERA
+   ======================================== */
+
+header {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 80px 20px;
+}
+
+header h1 {
+    margin: 0 0 15px;
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+
+header p {
+    margin: 0 auto;
+    max-width: 650px;
+    font-size: 1.1rem;
+    color: #e5e5e5;
+}
+
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-principal);
+}
+
+section p {
+    margin-bottom: 18px;
+    color: var(--color-texto-secundario);
+}
+
+
+/* ========================================
+   LISTAS
+   ======================================== */
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 12px;
+    color: var(--color-texto-secundario);
+}
+
+
+/* ========================================
+   CUADRÍCULA DE "ME GUSTA"
+   ======================================== */
+
+/* Convertimos la lista de "Me gusta" en una cuadrícula */
+section:nth-of-type(3) ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Cada elemento de la cuadrícula */
+section:nth-of-type(3) li {
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    padding: 25px;
+    margin: 0;
+    border-radius: 8px;
+}
+
+
+/* ========================================
+   ENLACES
+   ======================================== */
+
+a {
+    color: var(--color-principal);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    color: var(--color-principal-hover);
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   BOTONES
+   ======================================== */
+
+button {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--color-principal-hover);
+}
+
+
+/* ========================================
+   PIE DE PÁGINA
+   ======================================== */
+
+footer {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+footer p {
+    margin: 5px 0;
+    color: #e5e5e5;
+}
+
+
+/* ========================================
+   ADAPTACIÓN PARA MÓVILES
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    /* Reducimos el tamaño de la cabecera */
+    header {
+        padding: 60px 20px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    /* Reducimos el espacio del contenido */
+    main {
+        padding: 40px 20px;
+    }
+
+    section {
+        margin-bottom: 45px;
+    }
+
+    /* "Me gusta" pasa de 2 columnas a 1 */
+    section:nth-of-type(3) ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   BOTÓN DE CAMBIO DE TEMA
+   ======================================== */
+
+#boton-tema {
+    margin-top: 25px;
+    background-color: var(--color-blanco);
+    color: var(--color-principal);
+    border: 1px solid var(--color-blanco);
+    transition: all 0.3s ease;
+}
+
+#boton-tema:hover {
+    background-color: transparent;
+    color: var(--color-blanco);
+}
+
+
+/* ========================================
+   TRANSICIONES DE LA PÁGINA
+   ======================================== */
+
+/* Añadimos una transición para que
+   el cambio de colores sea suave */
+body {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+section,
+li,
+footer,
+header {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* ========================================
+   MODO OSCURO
+   ======================================== */
+
+body.modo-oscuro {
+    --color-fondo: #17191c;
+    --color-blanco: #22262a;
+    --color-texto: #f1f1f1;
+    --color-texto-secundario: #b8b8b8;
+    --color-principal: #d9e2e8;
+    --color-principal-hover: #ffffff;
+    --color-borde: #3a3f44;
+
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+/* Cabecera en modo oscuro */
+body.modo-oscuro header {
+    background-color: #101214;
+    color: var(--color-texto);
+}
+
+/* Texto de la cabecera */
+body.modo-oscuro header p {
+    color: #c5c5c5;
+}
+
+/* Títulos */
+body.modo-oscuro section h2 {
+    color: #d9e2e8;
+}
+
+/* Texto de las secciones */
+body.modo-oscuro section p,
+body.modo-oscuro li {
+    color: var(--color-texto-secundario);
+}
+
+/* Tarjetas de "Me gusta" */
+body.modo-oscuro section:nth-of-type(3) li {
+    background-color: #22262a;
+    border-color: var(--color-borde);
+}
+
+/* Footer */
+body.modo-oscuro footer {
+    background-color: #101214;
+}
+
+/* Botón en modo oscuro */
+body.modo-oscuro #boton-tema {
+    background-color: #d9e2e8;
+    color: #17191c;
+    border-color: #d9e2e8;
+}
+
+body.modo-oscuro #boton-tema:hover {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   ANIMACIÓN DE APARICIÓN
+   ======================================== */
+
+/* Estado inicial de las secciones */
+.aparecer {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: aparecer 0.7s ease forwards;
+}
+
+/* Animación */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+
+/* Quitamos las animaciones si el usuario
+   tiene configurado reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+ /* ========================================
+    FOTO DE PERFIL VERTICAL
+    ======================================== */
+
+/* Foto vertical de la sección "Sobre mí" */
+.foto-perfil {
+    display: block;
+    width: 240px;
+    height: 320px;
+    object-fit: cover;
+    margin: 0 auto 30px;
+    border-radius: 12px;
+    border: 1px solid var(--color-borde);
+}
+
+/* ========================================
+   BARRA DE NAVEGACIÓN
+   ======================================== */
+
+nav {
+    margin-top: 35px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav a {
+    display: block;
+    padding: 8px 14px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/* ========================================
+   DESPLAZAMIENTO SUAVE
+   ======================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ========================================
+   NAVEGACIÓN EN MODO OSCURO
+   ======================================== */
+
+body.modo-oscuro nav a {
+    color: #d9e2e8;
+}
+
+body.modo-oscuro nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+
+/* ========================================
+   NAVEGACIÓN EN MÓVIL
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    nav ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+}
