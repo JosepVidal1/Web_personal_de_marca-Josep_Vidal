@@ -10,7 +10,6 @@
 
   <body>
     <!-- Cabecera principal de la web -->
-    <!-- Cabecera principal de la web -->
     <header id="inicio">
       <h1>Josep Vidal Durà</h1>
 
@@ -28,6 +27,7 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#sobre-mi">Sobre mí</a></li>
           <li><a href="#hecho">Lo que he hecho</a></li>
+          <li><a href="#github">GitHub</a></li>
           <li><a href="#me-gusta">Me gusta</a></li>
           <li><a href="#intereses">Intereses profesionales</a></li>
         </ul>
@@ -43,7 +43,7 @@
         <!-- Foto personal -->
         <img
           src="Fotos/FotoPerfilJosep_SobreMi.png"
-          alt="Foto de Josep Vidal Dura"
+          alt="Foto de Josep Vidal Durà"
           class="foto-perfil"
         />
 
@@ -85,6 +85,18 @@
         </ul>
       </section>
 
+      <!-- Sección del widget de GitHub (datos vivos de una API externa) -->
+      <section id="github">
+        <h2>Mi actividad en GitHub</h2>
+        <p>
+          Estos números no los escribo yo: llegan en directo desde la API
+          pública de GitHub y crecen con cada proyecto que subo.
+        </p>
+
+        <!-- Hueco donde api.js pinta la tarjeta -->
+        <div id="widget" aria-live="polite">Cargando datos de GitHub…</div>
+      </section>
+
       <!-- Sección sobre mis gustos e intereses -->
       <section id="me-gusta">
         <h2>Me gusta</h2>
@@ -122,10 +134,20 @@
     </main>
 
     <!-- Pie de página -->
-    <!-- Pie de página -->
     <footer>
-      <p>Contacto: Josep Vidal Dura</p>
-      <p>&copy; <span id="año"></span> Josep Vidal Dura</p>
+      <p>
+        Contacto:
+        <a
+          href="https://github.com/JosepVidal1"
+          target="_blank"
+          rel="noopener noreferrer"
+          >github.com/JosepVidal1</a
+        >
+      </p>
+      <p>&copy; <span id="año"></span> Josep Vidal Durà</p>
     </footer>
+
+    <!-- Widget de GitHub: va al final para que el hueco #widget ya exista -->
+    <script src="api.js"></script>
   </body>
 </html>

@@ -97,8 +97,10 @@ li {
    CUADRÍCULA DE "ME GUSTA"
    ======================================== */
 
-/* Convertimos la lista de "Me gusta" en una cuadrícula */
-section:nth-of-type(3) ul {
+/* Convertimos la lista de "Me gusta" en una cuadrícula.
+   Usamos el id (#me-gusta) en vez de la posición de la sección,
+   así no se rompe aunque añadamos secciones nuevas. */
+#me-gusta ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -107,7 +109,7 @@ section:nth-of-type(3) ul {
 }
 
 /* Cada elemento de la cuadrícula */
-section:nth-of-type(3) li {
+#me-gusta li {
     background-color: var(--color-blanco);
     border: 1px solid var(--color-borde);
     padding: 25px;
@@ -167,6 +169,12 @@ footer p {
     color: #e5e5e5;
 }
 
+/* Enlaces del pie: claros para que se lean sobre el fondo oscuro */
+footer a,
+footer a:hover {
+    color: #ffffff;
+}
+
 
 /* ========================================
    ADAPTACIÓN PARA MÓVILES
@@ -197,7 +205,7 @@ footer p {
     }
 
     /* "Me gusta" pasa de 2 columnas a 1 */
-    section:nth-of-type(3) ul {
+    #me-gusta ul {
         grid-template-columns: 1fr;
     }
 }
@@ -283,7 +291,7 @@ body.modo-oscuro li {
 }
 
 /* Tarjetas de "Me gusta" */
-body.modo-oscuro section:nth-of-type(3) li {
+body.modo-oscuro #me-gusta li {
     background-color: #22262a;
     border-color: var(--color-borde);
 }
@@ -347,9 +355,20 @@ body.modo-oscuro #boton-tema:hover {
     }
 }
 
- /* ========================================
-    FOTO DE PERFIL VERTICAL
-    ======================================== */
+/* Texto que solo leen los lectores de pantalla (no se ve) */
+.solo-lectores {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   FOTO DE PERFIL VERTICAL
+   ======================================== */
 
 /* Foto vertical de la sección "Sobre mí" */
 .foto-perfil {
@@ -436,5 +455,218 @@ body.modo-oscuro nav a:hover {
     nav a {
         width: 100%;
         text-align: center;
+    }
+}
+
+
+/* ========================================
+   TARJETA PROFESIONAL DE GITHUB
+   ======================================== */
+
+/* Usa las variables de la marca: así el modo oscuro
+   se aplica solo, sin repetir colores */
+.tarjeta-github {
+    margin-top: 20px;
+    padding: 28px;
+    background-color: var(--color-blanco);
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.tarjeta-github:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+}
+
+/* Cabecera: avatar + nombre + usuario */
+.github-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.github-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--color-borde);
+    flex-shrink: 0;
+}
+
+.tarjeta-github h3 {
+    margin: 0;
+    color: var(--color-principal);
+    font-size: 1.4rem;
+    line-height: 1.3;
+}
+
+.tarjeta-github .github-usuario {
+    margin: 2px 0 0;
+    font-size: 0.95rem;
+}
+
+/* Indicadores de repositorios y seguidores */
+.github-metricas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.github-metrica {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+}
+
+.github-metrica strong {
+    color: var(--color-principal);
+    font-size: 2.2rem;
+    line-height: 1.1;
+}
+
+.github-metrica span {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* Pie de la tarjeta: enlace + hora de actualización */
+.github-pie {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 20px;
+}
+
+.tarjeta-github .github-actualizado {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+/* Puntito verde que indica "en directo" */
+.github-actualizado::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: #2ea043;
+    vertical-align: middle;
+}
+
+/* Caja de error: mismo diseño, borde de aviso */
+.github-error {
+    border-left: 4px solid #d29922;
+}
+
+.github-error p {
+    margin-top: 0;
+}
+
+
+/* ========================================
+   ESQUELETO DE CARGA DEL WIDGET
+   ======================================== */
+
+/* Bloques grises que parpadean mientras llegan los datos */
+.esqueleto-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.esqueleto-textos {
+    flex: 1;
+}
+
+.esqueleto-bloque {
+    background-color: var(--color-borde);
+    border-radius: 6px;
+    animation: parpadeo 1.2s ease-in-out infinite;
+}
+
+.esqueleto-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.esqueleto-linea {
+    height: 18px;
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+.esqueleto-linea.corta {
+    width: 35%;
+}
+
+.esqueleto-metrica {
+    height: 96px;
+    border-radius: 10px;
+}
+
+/* El esqueleto no se levanta al pasar el ratón */
+.esqueleto:hover {
+    transform: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes parpadeo {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+
+/* ========================================
+   WIDGET DE GITHUB EN MÓVIL
+   ======================================== */
+
+@media (max-width: 500px) {
+    .tarjeta-github {
+        padding: 20px;
+    }
+
+    .github-metricas {
+        grid-template-columns: 1fr;
+    }
+
+    .github-pie {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Respetar la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta-github {
+        transition: none;
+    }
+
+    .tarjeta-github:hover {
+        transform: none;
+    }
+
+    .esqueleto-bloque {
+        animation: none;
     }
 }
