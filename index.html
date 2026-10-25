@@ -6,6 +6,7 @@
     <title>Josep Vidal Durà - Web personal</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
+    <script src="contacto.js" defer></script>
   </head>
 
   <body>
@@ -30,6 +31,7 @@
           <li><a href="#github">GitHub</a></li>
           <li><a href="#me-gusta">Me gusta</a></li>
           <li><a href="#intereses">Intereses profesionales</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
     </header>
@@ -131,12 +133,102 @@
           internacionales.
         </p>
       </section>
+
+      <!-- Sección de contacto: formulario que envía de verdad con Formspree -->
+      <section id="contacto">
+        <h2>Contacto</h2>
+
+        <p>
+          ¿Tienes un proyecto, una práctica o una idea de automatización?
+          Escríbeme y te responderé lo antes posible.
+        </p>
+
+        <!-- Formspree recibe el mensaje y me lo reenvía a mi correo -->
+        <form
+          id="form-contacto"
+          class="form-contacto"
+          action="https://formspree.io/f/xqppevle"
+          method="POST"
+        >
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              autocomplete="name"
+              maxlength="80"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <label for="email">Tu correo</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="campo campo-completo">
+            <label for="mensaje">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              minlength="10"
+              maxlength="2000"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Campo trampa contra robots de spam (las personas no lo ven) -->
+          <input
+            type="text"
+            name="_gotcha"
+            class="campo-trampa"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+
+          <!-- Asunto del correo que me llega -->
+          <input
+            type="hidden"
+            name="_subject"
+            value="Nuevo mensaje desde mi web personal"
+          />
+
+          <div class="contacto-acciones">
+            <button type="submit" class="boton-contacto">Enviar mensaje</button>
+
+            <a
+              class="boton-contacto boton-secundario"
+              href="https://github.com/JosepVidal1"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub →</a
+            >
+          </div>
+
+          <!-- Aquí contacto.js escribe si el mensaje se ha enviado o no -->
+          <p
+            id="estado-formulario"
+            class="estado-formulario"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </section>
     </main>
 
     <!-- Pie de página -->
     <footer>
       <p>
-        Contacto:
+        Contacto: <a href="#contacto">formulario de contacto</a> ·
         <a
           href="https://github.com/JosepVidal1"
           target="_blank"

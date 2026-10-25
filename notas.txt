@@ -1,101 +1,30 @@
 # Notas del proyecto: Web personal de marca
 
-## 1. Objetivo
-
-Añadir a mi web personal una sección que muestre información de mi perfil de GitHub utilizando su API pública, sin necesidad de iniciar sesión ni utilizar un token de autenticación.
-
-## 2. Cambios realizados
-
-1. He creado el archivo `api.js` para gestionar la consulta a la API de GitHub.
-2. He añadido una sección con el identificador `github` en `index.html`.
-3. He enlazado el archivo `api.js` desde `index.html`.
-4. He añadido estilos en `style.css` para mostrar la información en una tarjeta, adaptarla a móviles e integrarla con el modo oscuro.
-5. He utilizado `fetch()` para solicitar los datos del perfil de GitHub.
-6. He utilizado `async/await` para gestionar la petición y `try/catch` para controlar posibles errores.
-7. He preparado la actualización automática de los datos cada 600 segundos (10 minutos).
-
-## 3. Datos que se quieren mostrar
-
-La consulta utiliza la API pública:
-
-https://api.github.com/users/JosepVidal1
-
-Los datos previstos son:
-- Nombre de usuario de GitHub.
-- Número de repositorios públicos.
-- Número de seguidores.
-- Enlace al perfil de GitHub.
-
-## 4. Tecnologías utilizadas
-
-- HTML5 para la estructura.
-- CSS3 para el diseño adaptable.
-- JavaScript para consultar y mostrar los datos.
-- API REST pública de GitHub.
-- JSON para recibir y procesar la información.
-
-## 5. Comprobación de la API
-
-He realizado las siguientes comprobaciones en Google Chrome:
-
-1. He abierto la web personal.
-2. He abierto las herramientas de desarrollador.
-3. He accedido a la pestaña **Network (Red)** y seleccionado el filtro **Fetch/XHR**.
-4. He recargado la página.
-5. He localizado la petición a `https://api.github.com/users/JosepVidal1`.
-6. He comprobado que la petición devuelve el estado HTTP `200`, lo que indica que la solicitud se ha procesado correctamente.
-7. He revisado la consola y no aparecen errores en rojo.
-
-**Resultado:** la petición a la API funciona correctamente. La tarjeta muestra los datos públicos del perfil de GitHub.
-
-## 6. Diseño y adaptación
-
-Se ha preparado el widget para mantener la coherencia visual con la web personal, adaptarse a pantallas móviles y respetar el modo claro y oscuro.
-
-## 7. Errores y mejoras pendientes
-
-La comprobación de la petición HTTP se ha completado correctamente. Como posibles mejoras futuras, se podría revisar el funcionamiento de la tarjeta en distintos tamaños de pantalla y comprobar la presentación tanto en modo claro como en modo oscuro.
-
-
-
-
-
-## Widget de GitHub: datos vivos de una API externa
-
-- **Objetivo:** mostrar datos públicos de mi perfil de GitHub en mi web personal.
-- **API utilizada:** `https://api.github.com/users/JosepVidal1`
-- **Archivo nuevo:** `api.js`.
-- **Datos mostrados:** número de repositorios públicos y seguidores.
-- **Tecnologías:** JavaScript, `fetch()`, `async/await`, JSON y `try...catch`.
-- **Gestión de errores:** se muestra un mensaje si la consulta a la API falla.
-- **Actualización automática:** configurada cada 600 segundos. Se puede desactivar asignando el valor 0 a `segundosActualizacion`.
-- **Diseño:** tarjeta con métricas, adaptación móvil y estilos para el modo oscuro.
-- **Pruebas realizadas:** [anotar aquí las pruebas que hayas completado y sus resultados].
-
-Notas Claude:
-
-# Notas del proyecto: Web personal de marca
-
-## Widget API: datos vivos de GitHub
-
-### 1. Frase de marca (por qué este widget)
+## 1. Frase de marca
 
 Mi web va de mi camino como futuro programador (DAM, automatización, IA) y por eso
 muestro mis datos reales de GitHub: mis repositorios públicos y mis seguidores.
 No digo "programo", lo demuestro con números que crecen solos cada vez que subo un proyecto.
 
-### 2. Variante elegida
+
+## 2. Widget de GitHub: datos vivos de una API externa
+
+### 2.1 Objetivo
+
+Mostrar en mi web información real de mi perfil público de GitHub usando su API,
+sin iniciar sesión y sin token ni clave.
+
+### 2.2 Variante elegida
 
 - Variantes valoradas: (A) tarjeta con métricas, (B) línea de texto "X repos · Y seguidores",
   (C) medidor de progreso de repos.
-- Elegida: (A) TARJETA, porque encaja con el diseño de tarjetas que ya uso en "Me gusta"
-  y con la paleta sobria de mi marca (#273746).
+- Elegida: (A) TARJETA: título, descripción «Mi actividad como desarrollador.»,
+  dos cifras destacadas y enlace al perfil. Encaja con el diseño de tarjetas del resto de la web.
 
-### 3. Datos técnicos
+### 2.3 Datos técnicos
 
-- API: https://api.github.com/users/JosepVidal1 (pública, sin clave, sin token).
-- CORS: la respuesta incluye la cabecera `access-control-allow-origin: *`.
-- Archivo: api.js (cargado al final de index.html con <script src="api.js"></script>).
+- API: https://api.github.com/users/JosepVidal1 (pública, sin clave).
+- Archivo: api.js, cargado al final de index.html con <script src="api.js"></script>.
 - Hueco en el HTML: <div id="widget"> dentro de la sección #github.
 - Campos del JSON que se pintan:
   - avatar_url    -> foto redonda
@@ -104,8 +33,9 @@ No digo "programo", lo demuestro con números que crecen solos cada vez que subo
   - followers     -> número de seguidores
   - html_url      -> enlace al perfil
 - Recarga automática: cada 600 s (variable `segundosActualizacion` en api.js; 0 = desactivada).
+- Tecnologías: HTML5, CSS3, JavaScript, fetch(), async/await, JSON, try/catch, API REST.
 
-### 4. Recorrido del dato (para la defensa)
+### 2.4 Recorrido del dato (para la defensa)
 
 1. Abro la web -> el navegador carga index.html y ejecuta api.js.
 2. api.js pide la URL https://api.github.com/users/JosepVidal1 con fetch().
@@ -115,15 +45,41 @@ No digo "programo", lo demuestro con números que crecen solos cada vez que subo
    Si algo falla (sin internet, GitHub caído, límite 403) entra el try/catch y se muestra
    un mensaje amable, nunca un "Cargando..." eterno.
 
-### 5. Estados del widget
+### 2.5 Estados del widget
 
 - Cargando: tarjeta "esqueleto" gris que parpadea.
-- Correcto: tarjeta con avatar, nombre, métricas, enlace y "actualizado a las HH:MM".
+- Correcto: tarjeta con avatar, nombre, descripción, métricas, enlace y hora de actualización.
 - Error sin datos previos: aviso amable + enlace directo a mi perfil.
-- Error en una recarga: se mantienen los últimos datos y se avisa en la línea de actualización.
+- Error en una recarga: se mantienen los últimos datos y se avisa.
 - Límite de GitHub (403, ~60 peticiones/hora por IP sin clave): mensaje específico.
 
-### 6. Órdenes clave a la IA (archivadas)
+
+## 3. Formulario de contacto (Formspree)
+
+- Requisito mínimo de la rúbrica: un visitante debe poder contactarme de verdad.
+- Decisión: formulario con Formspree en vez de publicar mi correo, para proteger mi
+  privacidad. Formspree recibe el mensaje y me lo reenvía a mi correo real.
+- Descarté usar el correo "noreply" de GitHub porque no es un buzón real:
+  los mensajes no llegarían nunca (la rúbrica lo considera "mail inventado").
+- Archivos: sección #contacto en index.html, estilos en style.css y lógica en contacto.js.
+- Validación: campos obligatorios (required), correo con formato válido (type="email"),
+  mensaje de 10 caracteres como mínimo.
+- contacto.js envía los datos con fetch() y muestra un mensaje de éxito o de error
+  sin salir de la web. Incluye un campo trampa (_gotcha) contra spam.
+
+
+## 4. Errores detectados y corregidos
+
+- La cuadrícula de "Me gusta" usaba `section:nth-of-type(3)`. Al añadir la sección de
+  GitHub, "Me gusta" pasó a ser la 4ª y perdió el diseño. Corregido usando `#me-gusta`.
+- La tarjeta de GitHub tenía colores fijos. Ahora usa las variables CSS de mi marca,
+  así el modo oscuro se aplica solo.
+- El menú no tenía enlace a GitHub ni a Contacto. Añadidos.
+- Cada recarga automática borraba la tarjeta. Ahora el esqueleto solo sale la primera vez.
+- Faltaba en style.css la clase `.solo-lectores` que usa api.js. Añadida.
+
+
+## 5. Órdenes clave a la IA (archivadas)
 
 Orden 1 · Variantes:
 "Tengo una web personal de marca (HTML, CSS y JS puros, ficheros separados) y quiero
@@ -148,23 +104,26 @@ Orden 4 · Iteración (esqueleto de carga):
 "Quiero que el hueco de carga no sea texto pelado: un pequeño esqueleto que parpadea
 mientras llega el dato, con el estilo de mi web. Dame api.js completo y el CSS necesario."
 
-### 7. Errores detectados y corregidos en la revisión
+Orden 5 · Contacto real:
+"Quiero cumplir el requisito mínimo de contacto sin publicar mi correo personal.
+Prepárame un formulario con Formspree que envíe de verdad, con validación, mensaje de
+éxito y de error, adaptado a mi diseño, al modo oscuro y al móvil."
 
-- La cuadrícula de "Me gusta" usaba `section:nth-of-type(3)`. Al añadir la sección de
-  GitHub, "Me gusta" pasó a ser la 4ª y perdió el diseño. Corregido usando `#me-gusta`.
-- La tarjeta de GitHub tenía colores fijos y en modo oscuro no usaba mi paleta.
-  Corregido usando las variables CSS (--color-blanco, --color-principal...).
-- El menú no tenía enlace a la sección GitHub. Añadido.
-- Cada recarga automática borraba la tarjeta y volvía a "Cargando". Ahora solo se ve
-  el esqueleto la primera vez.
 
-### 8. Pruebas realizadas (rellenar con mis resultados)
+## 6. Comprobaciones
 
-- [ ] Live Server: aparece el esqueleto y después la tarjeta con mis datos.
-- [ ] Sin wifi + recargar: aparece "GitHub no responde ahora" (no se queda cargando).
+### Hechas
+- [x] Chrome (Live Server) -> Network -> Fetch/XHR: petición users/JosepVidal1 con estado 200.
+- [x] Consola sin errores en rojo (en local).
 - [x] Sin wifi + recargar: aparece "GitHub no responde ahora" (no se queda cargando).
-- [ ] F12 -> Network -> Fetch/XHR: petición users/JosepVidal1 con estado 200.
-- [ ] F12 -> Response: localizo "public_repos" y "followers" en el JSON.
-- [ ] F12 -> Headers: veo access-control-allow-origin: *
-- [ ] GitHub Pages: consola limpia, sin errores en rojo.
-- [ ] Modo oscuro y móvil (F12 -> icono de móvil) se ven bien.
+- [x] La descripción «Mi actividad como desarrollador.» se ve en la tarjeta.
+- [x] Formulario: cuenta creada en Formspree y código (xqppevle) puesto en index.html.
+- [x] Formulario: mensaje de prueba enviado desde Live Server. Sale "¡Gracias!" y el
+      correo me llega con nombre, email y mensaje.
+
+### Pendientes
+- [ ] F12 -> Headers: ver access-control-allow-origin: *
+- [ ] F12 -> Response: localizar "public_repos" y "followers" en el JSON.
+- [ ] Revisar diseño en modo claro, modo oscuro y móvil (DevTools -> modo dispositivo).
+- [ ] Formulario: enviar un mensaje de prueba desde GitHub Pages.
+- [ ] GitHub Pages: la web carga y la consola está limpia.
