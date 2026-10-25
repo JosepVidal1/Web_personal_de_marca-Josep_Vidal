@@ -113,6 +113,11 @@ function pintarTarjeta(datos) {
   textosCabecera.append(titulo, usuario);
   cabecera.append(avatar, textosCabecera);
 
+  // Descripción corta de la tarjeta.
+  const descripcion = document.createElement("p");
+  descripcion.className = "github-descripcion";
+  descripcion.textContent = "Mi actividad como desarrollador.";
+
   // Métricas: repositorios públicos y seguidores.
   const metricas = document.createElement("div");
   metricas.className = "github-metricas";
@@ -138,7 +143,7 @@ function pintarTarjeta(datos) {
 
   pie.append(enlace, actualizado);
 
-  tarjeta.append(cabecera, metricas, pie);
+  tarjeta.append(cabecera, descripcion, metricas, pie);
 
   // Sustituimos lo que hubiera en el hueco por la tarjeta nueva.
   widget.replaceChildren(tarjeta);
