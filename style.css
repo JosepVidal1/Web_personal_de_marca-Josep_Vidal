@@ -54,6 +54,16 @@ a:hover { color: #087c62; }
 a:focus-visible,
 button:focus-visible { outline: 3px solid #37b993; outline-offset: 4px; }
 
+/* Texto que solo leen los lectores de pantalla (no se ve) */
+.solo-lectores {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
 /* Portada */
 header {
     position: relative;
@@ -350,6 +360,8 @@ section li:last-child { margin-bottom: 0; }
 .tarjeta-github .github-usuario,
 .tarjeta-github .github-actualizado { margin: 3px 0 0; color: var(--color-secundario); font-size: 0.9rem; }
 
+.tarjeta-github .github-descripcion { margin: 18px 0 0; color: var(--color-secundario); }
+
 .github-metricas {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -404,6 +416,106 @@ section li:last-child { margin-bottom: 0; }
     50% { opacity: 0.4; }
 }
 
+/* Contacto */
+#contacto { grid-column: 1 / -1; text-align: center; }
+#contacto h2::after { left: calc(50% - 21px); } /* centra la rayita verde */
+#contacto p { max-width: 560px; margin-inline: auto; }
+
+.contacto-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.boton-contacto {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border: 1px solid var(--color-principal);
+    border-radius: 999px;
+    background: var(--color-principal);
+    color: var(--color-fondo);
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    overflow-wrap: anywhere; /* para que un texto largo no se salga en móvil */
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.boton-contacto:hover {
+    transform: translateY(-2px);
+    background: var(--color-principal-hover);
+    color: var(--color-fondo);
+}
+
+.boton-contacto:disabled { opacity: 0.6; cursor: wait; transform: none; }
+
+.boton-secundario { border-color: var(--color-borde); background: transparent; color: var(--color-principal); }
+.boton-secundario:hover { background: var(--color-fondo); color: var(--color-principal); }
+
+/* Formulario de contacto: dos columnas (nombre y correo) y el mensaje debajo */
+.form-contacto {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 720px;
+    margin: 28px auto 0;
+    text-align: left;
+}
+
+.campo { display: flex; flex-direction: column; gap: 6px; }
+
+.campo-completo,
+.form-contacto .contacto-acciones,
+.form-contacto .estado-formulario { grid-column: 1 / -1; }
+
+.form-contacto .contacto-acciones { margin-top: 4px; }
+
+.campo label { color: var(--color-principal); font-size: 0.9rem; font-weight: 700; }
+
+.campo input,
+.campo textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(20, 38, 56, 0.18);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--color-texto);
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo textarea { min-height: 130px; resize: vertical; }
+
+/* Al escribir en un campo se ilumina con el verde de la marca */
+.campo input:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: #57cba0;
+    box-shadow: 0 0 0 3px rgba(87, 203, 160, 0.25);
+}
+
+/* Campo trampa para robots: fuera de la pantalla */
+.campo-trampa { position: absolute; left: -9999px; }
+
+/* Mensaje de éxito o error tras enviar */
+.estado-formulario {
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: var(--color-principal);
+    font-weight: 600;
+    text-align: center;
+}
+
+.estado-formulario:empty { display: none; }
+.estado-formulario.exito { background: rgba(87, 203, 160, 0.2); }
+.estado-formulario.error { background: rgba(210, 153, 34, 0.2); }
+
 /* Pie */
 footer { padding: 35px 20px; background: #102334; color: #e4edf0; text-align: center; }
 footer p { margin: 5px 0; color: #c3d1d6; }
@@ -451,6 +563,8 @@ body.modo-oscuro #github {
 }
 body.modo-oscuro #me-gusta li,
 body.modo-oscuro .github-metrica { background: #14212a; }
+body.modo-oscuro .campo input,
+body.modo-oscuro .campo textarea { border-color: var(--color-borde); background: #14212a; }
 body.modo-oscuro .foto-perfil { border-color: #243640; }
 body.modo-oscuro footer { background: #0b151d; }
 
@@ -477,7 +591,8 @@ body.modo-oscuro footer { background: #0b151d; }
     #sobre-mi { grid-template-columns: 100px minmax(0, 1fr); column-gap: 16px; }
     .foto-perfil { height: 145px; border-radius: 14px; }
     #me-gusta ul,
-    .github-metricas { grid-template-columns: 1fr; }
+    .github-metricas,
+    .form-contacto { grid-template-columns: 1fr; }
     .github-pie { flex-direction: column; align-items: flex-start; }
 }
 
@@ -500,7 +615,8 @@ body.modo-oscuro footer { background: #0b151d; }
     .tarjeta-github:hover,
     #me-gusta li:hover,
     .foto-perfil:hover,
-    .github-metrica:hover { transform: none; }
+    .github-metrica:hover,
+    .boton-contacto:hover { transform: none; }
 
     .esqueleto-bloque { animation: none; }
 }
