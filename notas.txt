@@ -117,11 +117,13 @@ Prepárame un formulario con Formspree que envíe de verdad, con validación, me
 - [x] Consola sin errores en rojo (en local).
 - [x] Sin wifi + recargar: aparece "GitHub no responde ahora" (no se queda cargando).
 - [x] La descripción «Mi actividad como desarrollador.» se ve en la tarjeta.
+- [x] Formulario: cuenta creada en Formspree y código (xqppevle) puesto en index.html.
+- [x] Formulario: mensaje de prueba enviado desde Live Server. Sale "¡Gracias!" y el
+      correo me llega con nombre, email y mensaje.
 
 ### Pendientes
 - [ ] F12 -> Headers: ver access-control-allow-origin: *
 - [ ] F12 -> Response: localizar "public_repos" y "followers" en el JSON.
 - [ ] Revisar diseño en modo claro, modo oscuro y móvil (DevTools -> modo dispositivo).
-- [ ] Formulario: crear cuenta en Formspree y poner mi ID en index.html.
-- [ ] Formulario: enviar un mensaje de prueba y comprobar que me llega al correo.
+- [ ] Formulario: enviar un mensaje de prueba desde GitHub Pages.
 - [ ] GitHub Pages: la web carga y la consola está limpia.
