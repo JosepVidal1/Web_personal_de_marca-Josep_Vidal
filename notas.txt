@@ -127,3 +127,4 @@ Prepárame un formulario con Formspree que envíe de verdad, con validación, me
 - [ ] Revisar diseño en modo claro, modo oscuro y móvil (DevTools -> modo dispositivo).
 - [ ] Formulario: enviar un mensaje de prueba desde GitHub Pages.
 - [ ] GitHub Pages: la web carga y la consola está limpia.
+- [ ] Llegar a 10 commits como mínimo (ahora tengo 8).

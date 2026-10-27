@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <script src="contacto.js" defer></script>
+    <script src="tiempo.js" defer></script>
   </head>
 
   <body>
@@ -31,6 +32,7 @@
           <li><a href="#github">GitHub</a></li>
           <li><a href="#me-gusta">Me gusta</a></li>
           <li><a href="#intereses">Intereses profesionales</a></li>
+          <li><a href="#tiempo">El tiempo</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
@@ -132,6 +134,40 @@
           Además, me interesa la posibilidad de trabajar en remoto para empresas
           internacionales.
         </p>
+      </section>
+
+      <!-- Sección del tiempo: datos vivos de Open-Meteo según la ubicación que elige el usuario -->
+      <section id="tiempo">
+        <h2>El tiempo ahora</h2>
+
+        <p>
+          Empiezo por Albaida, mi ciudad. Escribe otra ciudad o usa tu ubicación
+          para ver el tiempo que hace ahora mismo.
+        </p>
+
+        <!-- Formulario para que el usuario elija la ubicación -->
+        <form id="form-tiempo" class="form-tiempo">
+          <label for="ciudad" class="solo-lectores">Ciudad</label>
+          <input
+            id="ciudad"
+            name="ciudad"
+            type="text"
+            placeholder="Escribe una ciudad (ej.: Valencia)"
+            autocomplete="address-level2"
+            required
+          />
+          <button type="submit" class="boton-contacto">Buscar</button>
+          <button
+            type="button"
+            id="boton-ubicacion"
+            class="boton-contacto boton-secundario"
+          >
+            📍 Usar mi ubicación
+          </button>
+        </form>
+
+        <!-- Hueco donde tiempo.js pinta el resultado -->
+        <div id="widget-tiempo" aria-live="polite">Cargando el tiempo…</div>
       </section>
 
       <!-- Sección de contacto: formulario que envía de verdad con Formspree -->
